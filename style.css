@@ -208,7 +208,7 @@ body::before {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    padding: 16vh 2rem 14vh;
+    padding: 28vh 2rem 26vh;
     max-width: 600px;
     width: 100%;
     gap: 0;
@@ -228,7 +228,7 @@ body::before {
     color: var(--text-dark);
     letter-spacing: 0.02em;
     line-height: 1.6;
-    margin-bottom: 0.8rem;
+    margin-bottom: 1.5rem;
     direction: rtl;
     text-shadow: 0 1px 10px rgba(255, 255, 255, 0.9), 0 0 30px rgba(255, 255, 255, 0.6);
 }
@@ -241,7 +241,7 @@ body::before {
     font-style: italic;
     color: var(--text-light);
     letter-spacing: 0.08em;
-    margin-bottom: 1.2rem;
+    margin-bottom: 1.8rem;
     text-shadow: 0 1px 10px rgba(255, 255, 255, 0.9), 0 0 30px rgba(255, 255, 255, 0.6);
 }
 
@@ -251,7 +251,7 @@ body::before {
     flex-direction: column;
     align-items: center;
     gap: 0;
-    margin: 0.5rem 0 1rem;
+    margin: 0.5rem 0 1.8rem;
 }
 
 .name {
@@ -280,7 +280,7 @@ body::before {
     color: var(--text-light);
     letter-spacing: 0.05em;
     line-height: 1.7;
-    margin-bottom: 1.3rem;
+    margin-bottom: 2rem;
     text-shadow: 0 1px 10px rgba(255, 255, 255, 0.9), 0 0 30px rgba(255, 255, 255, 0.6);
 }
 
@@ -290,7 +290,7 @@ body::before {
     flex-direction: column;
     align-items: center;
     gap: 0.3rem;
-    margin-bottom: 0.6rem;
+    margin-bottom: 1.2rem;
 }
 
 .date-row {
