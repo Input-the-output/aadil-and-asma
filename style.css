@@ -177,23 +177,12 @@ body::before {
 
 /* ---------- Floral Frame (top & bottom pieces) ---------- */
 .floral-frame {
-    position: absolute;
-    left: 0;
-    right: 0;
     width: 100%;
-    object-fit: contain;
+    height: auto;
     pointer-events: none;
-    z-index: 2;
     opacity: 0;
     transition: opacity 1.2s ease 0.3s;
-}
-
-.floral-frame-top {
-    top: 0;
-}
-
-.floral-frame-bottom {
-    bottom: 0;
+    margin: 1rem 0;
 }
 
 .invitation-content.text-revealed .floral-frame {
@@ -208,7 +197,7 @@ body::before {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    padding: 20vh 2rem 20vh;
+    padding: 1rem 1.5rem;
     max-width: 600px;
     width: 100%;
     gap: 0;
