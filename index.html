@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Adil & Asma — Wedding Invitation</title>
+    <meta name="description" content="You are cordially invited to the wedding of Adil Allana & Asma Dandan — March 28, 2026 at Sursock Palace">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Great+Vibes&family=Lora:ital,wght@0,400;0,500;1,400&family=Amiri&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ============ VIDEO INTRO OVERLAY ============ -->
+    <div id="intro-overlay">
+        <video id="intro-video" playsinline preload="auto" muted>
+            <source src="assets/Adil%26Asma%20opening.mp4" type="video/mp4">
+        </video>
+        <div id="intro-prompt">
+            <span class="intro-prompt-text">Tap to Open</span>
+        </div>
+    </div>
+
+    <!-- ============ MAIN INVITATION ============ -->
+    <main id="invitation">
+        <!-- Content -->
+        <div class="invitation-content">
+            <!-- Bismillah -->
+            <p class="bismillah anim-fade" data-delay="1">بسم الله الرحمن الرحيم</p>
+
+            <!-- Together -->
+            <p class="together anim-fade" data-delay="2">Together with their families</p>
+
+            <!-- Names -->
+            <div class="names-block anim-fade" data-delay="3">
+                <span class="name groom">Adil Allana</span>
+                <span class="ampersand">&amp;</span>
+                <span class="name bride">Asma Dandan</span>
+            </div>
+
+            <!-- Request -->
+            <p class="request anim-fade" data-delay="4">Request the pleasure of your presence<br>at their wedding</p>
+
+            <!-- Date Block -->
+            <div class="date-block anim-fade" data-delay="5">
+                <div class="date-row">
+                    <span class="date-label day-name">Saturday</span>
+                    <div class="date-divider-v"></div>
+                    <div class="date-center">
+                        <span class="date-label month">March</span>
+                        <span class="date-number">28</span>
+                    </div>
+                    <div class="date-divider-v"></div>
+                    <span class="date-label time">AT 08:00 PM</span>
+                </div>
+                <span class="date-year">2026</span>
+            </div>
+
+            <!-- Venue -->
+            <p class="venue anim-fade" data-delay="6">Sursock Palace</p>
+        </div>
+    </main>
+
+    <!-- ============ RSVP SECTION ============ -->
+    <section id="rsvp-section">
+        <div class="rsvp-container">
+
+            <!-- View: Search -->
+            <div id="rsvp-search" class="rsvp-view active">
+                <h2 class="rsvp-title">Find Your Name</h2>
+                <p class="rsvp-subtitle">Enter your name as it appears on your invitation</p>
+                <div class="rsvp-input-group">
+                    <input type="text" id="rsvp-name-input" class="rsvp-input" placeholder="Your full name" autocomplete="name" maxlength="100">
+                    <button id="rsvp-search-btn" class="rsvp-submit-btn">Search</button>
+                </div>
+                <div id="rsvp-search-error" class="rsvp-error" hidden></div>
+                <div id="rsvp-candidates" class="rsvp-candidates" hidden>
+                    <p class="rsvp-subtitle">Did you mean?</p>
+                    <ul id="rsvp-candidate-list" class="rsvp-candidate-list"></ul>
+                </div>
+            </div>
+
+            <!-- View: Form -->
+            <div id="rsvp-form" class="rsvp-view">
+                <h2 class="rsvp-title">Your RSVP</h2>
+                <div id="rsvp-guest-card" class="rsvp-guest-card">
+                    <span id="rsvp-guest-name" class="rsvp-guest-name"></span>
+                </div>
+
+                <form id="rsvp-form-el">
+                    <input type="hidden" id="rsvp-guest-id" name="guest_id">
+
+                    <!-- Wedding attendance -->
+                    <div class="rsvp-field">
+                        <label class="rsvp-field-label">Wedding — March 28, 2026</label>
+                        <div class="rsvp-radio-group">
+                            <label class="rsvp-radio">
+                                <input type="radio" name="attending_wedding" value="1" checked>
+                                <span class="rsvp-radio-box">Joyfully Accept</span>
+                            </label>
+                            <label class="rsvp-radio">
+                                <input type="radio" name="attending_wedding" value="0">
+                                <span class="rsvp-radio-box">Regretfully Decline</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Pre-wedding attendance (conditional) -->
+                    <div id="rsvp-pre-wedding-field" class="rsvp-field" hidden>
+                        <label class="rsvp-field-label">Pre-Wedding Celebration</label>
+                        <div class="rsvp-radio-group">
+                            <label class="rsvp-radio">
+                                <input type="radio" name="attending_pre_wedding" value="1" checked>
+                                <span class="rsvp-radio-box">Joyfully Accept</span>
+                            </label>
+                            <label class="rsvp-radio">
+                                <input type="radio" name="attending_pre_wedding" value="0">
+                                <span class="rsvp-radio-box">Regretfully Decline</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Plus-one (conditional) -->
+                    <div id="rsvp-plus-one-field" class="rsvp-field" hidden>
+                        <label class="rsvp-field-label">Plus One</label>
+                        <div class="rsvp-radio-group">
+                            <label class="rsvp-radio">
+                                <input type="radio" name="plus_one_coming" value="1">
+                                <span class="rsvp-radio-box">Bringing a Guest</span>
+                            </label>
+                            <label class="rsvp-radio">
+                                <input type="radio" name="plus_one_coming" value="0" checked>
+                                <span class="rsvp-radio-box">Just Me</span>
+                            </label>
+                        </div>
+                        <div id="rsvp-plus-one-name-wrap" class="rsvp-plus-one-name-wrap" hidden>
+                            <input type="text" id="rsvp-plus-one-name" class="rsvp-input" placeholder="Guest's full name" maxlength="100">
+                        </div>
+                    </div>
+
+                    <button type="submit" id="rsvp-submit-btn" class="rsvp-submit-btn">Submit RSVP</button>
+                </form>
+
+                <button id="rsvp-back-btn" class="rsvp-back-btn">← Back to Search</button>
+            </div>
+
+            <!-- View: Success -->
+            <div id="rsvp-success" class="rsvp-view">
+                <div class="rsvp-success-icon">✓</div>
+                <h2 class="rsvp-title">Thank You!</h2>
+                <p class="rsvp-subtitle">Your RSVP has been recorded.<br>We look forward to celebrating with you.</p>
+            </div>
+
+            <!-- View: Already Submitted -->
+            <div id="rsvp-already" class="rsvp-view">
+                <h2 class="rsvp-title">Already Submitted</h2>
+                <p class="rsvp-subtitle">Your RSVP for <strong id="rsvp-already-name"></strong> has already been recorded. Thank you!</p>
+            </div>
+
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>

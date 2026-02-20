@@ -1,0 +1,4 @@
+api/config.php
+api/rate_limits/
+data/rsvps.json
+.claude/

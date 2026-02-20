@@ -1,0 +1,749 @@
+/* ============================================
+   ADIL & ASMA — WEDDING INVITATION
+   ============================================ */
+
+/* ---------- Reset & Base ---------- */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg: #f5ede4;
+    --bg-warm: #efe5d8;
+    --text: #6b6155;
+    --text-light: #8a7e72;
+    --text-dark: #4a3f35;
+    --accent: #7a8b5c;
+    --accent-light: #a3b08e;
+    --gold: #b8a88a;
+    --border: #c9bfb2;
+    --font-display: "Cormorant Garamond", serif;
+    --font-body: "Lora", serif;
+    --font-script: "Great Vibes", cursive;
+    --font-arabic: "Amiri", serif;
+}
+
+html {
+    font-size: 16px;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    font-family: var(--font-body);
+    background: var(--bg);
+    color: var(--text);
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    position: relative;
+    isolation: isolate;
+}
+
+/* ---------- Painted-wall / plaster texture overlay (SVG noise) ---------- */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.45;
+    filter: contrast(170%) brightness(1000%);
+    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='512' height='512' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+}
+
+/* ============================================
+   INTRO VIDEO OVERLAY
+   ============================================ */
+#intro-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+#intro-overlay.done {
+    display: none;
+}
+
+#intro-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#intro-prompt {
+    position: absolute;
+    bottom: 12%;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    text-align: center;
+    animation: fadeInPrompt 1.5s ease 0.5s both;
+    transition: opacity 0.5s ease;
+}
+
+#intro-prompt.hidden {
+    animation: none;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.intro-prompt-text {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 300;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(245, 237, 228, 0.85);
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+@keyframes fadeInPrompt {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ============================================
+   MAIN INVITATION
+   ============================================ */
+#invitation {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    overflow: hidden;
+    z-index: 1;
+    background: #fff;
+}
+
+/* Fountain background — reveals with animation after video */
+#invitation::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background:
+        radial-gradient(ellipse at center, rgba(245, 237, 228, 0.55) 20%, rgba(239, 229, 216, 0.6) 100%),
+        url('assets/0220.gif') center top / cover no-repeat;
+    background-color: var(--bg);
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 1.5s ease, transform 1.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+#invitation.reveal-bg::after {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* ---------- Invitation Content ---------- */
+.invitation-content {
+    position: relative;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 6vh 1.5rem 2rem;
+    max-width: 600px;
+    width: 100%;
+    gap: 0;
+}
+
+/* ---------- Bismillah ---------- */
+.bismillah {
+    font-family: var(--font-arabic);
+    font-size: 2rem;
+    color: var(--text-dark);
+    letter-spacing: 0.02em;
+    line-height: 1.6;
+    margin-bottom: 0.8rem;
+    direction: rtl;
+    text-shadow: 0 1px 10px rgba(255, 255, 255, 0.9), 0 0 30px rgba(255, 255, 255, 0.6);
+}
+
+/* ---------- Together ---------- */
+.together {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--text-light);
+    letter-spacing: 0.08em;
+    margin-bottom: 1.2rem;
+    text-shadow: 0 1px 10px rgba(255, 255, 255, 0.9), 0 0 30px rgba(255, 255, 255, 0.6);
+}
+
+/* ---------- Names Block ---------- */
+.names-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    margin: 0.5rem 0 1rem;
+}
+
+.name {
+    font-family: var(--font-script);
+    font-size: clamp(2rem, 7vw, 3.2rem);
+    color: var(--text-dark);
+    line-height: 1.2;
+    white-space: nowrap;
+    text-shadow: 0 2px 12px rgba(255, 255, 255, 0.95), 0 0 40px rgba(255, 255, 255, 0.7);
+}
+
+.ampersand {
+    font-family: var(--font-script);
+    font-size: clamp(1.4rem, 5vw, 2.2rem);
+    color: var(--text-light);
+    line-height: 1;
+    margin: 0.1em 0;
+    text-shadow: 0 1px 10px rgba(255, 255, 255, 0.9), 0 0 30px rgba(255, 255, 255, 0.6);
+}
+
+/* ---------- Request ---------- */
+.request {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 300;
+    color: var(--text-light);
+    letter-spacing: 0.05em;
+    line-height: 1.7;
+    margin-bottom: 1.3rem;
+    text-shadow: 0 1px 10px rgba(255, 255, 255, 0.9), 0 0 30px rgba(255, 255, 255, 0.6);
+}
+
+/* ---------- Date Block ---------- */
+.date-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+    margin-bottom: 0.6rem;
+}
+
+.date-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+}
+
+.date-label {
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--text);
+    padding: 0 1rem;
+    text-shadow: 0 1px 10px rgba(255, 255, 255, 0.9), 0 0 30px rgba(255, 255, 255, 0.6);
+}
+
+.date-divider-v {
+    width: 1px;
+    height: 50px;
+    background: var(--border);
+}
+
+.date-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 1rem;
+}
+
+.date-center .month {
+    font-size: 0.8rem;
+    padding: 0;
+    margin-bottom: 0.1rem;
+}
+
+.date-number {
+    font-family: var(--font-display);
+    font-size: 3.2rem;
+    font-weight: 300;
+    color: var(--text);
+    line-height: 1;
+    text-shadow: 0 1px 10px rgba(255, 255, 255, 0.9), 0 0 30px rgba(255, 255, 255, 0.6);
+}
+
+.date-year {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-light);
+    text-shadow: 0 1px 10px rgba(255, 255, 255, 0.9), 0 0 30px rgba(255, 255, 255, 0.6);
+}
+
+/* ---------- Venue ---------- */
+.venue {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: var(--text-dark);
+    margin-top: 0.3rem;
+    text-shadow: 0 1px 10px rgba(255, 255, 255, 0.9), 0 0 30px rgba(255, 255, 255, 0.6);
+}
+
+
+/* ============================================
+   BODY SCROLL UNLOCK
+   ============================================ */
+body.body-scrollable {
+    overflow-y: auto;
+    height: auto;
+}
+
+/* ============================================
+   RSVP SECTION
+   ============================================ */
+#rsvp-section {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 1.5rem;
+    background: var(--bg);
+}
+
+.rsvp-container {
+    width: 100%;
+    max-width: 480px;
+    position: relative;
+}
+
+/* ---------- RSVP Views ---------- */
+.rsvp-view {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.rsvp-view.active {
+    display: flex;
+}
+
+.rsvp-title {
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    font-weight: 300;
+    color: var(--text-dark);
+    letter-spacing: 0.08em;
+    margin-bottom: 0.5rem;
+}
+
+.rsvp-subtitle {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--text-light);
+    letter-spacing: 0.03em;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+/* ---------- Search Input ---------- */
+.rsvp-input-group {
+    display: flex;
+    gap: 0.5rem;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.rsvp-input {
+    flex: 1;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    color: var(--text-dark);
+    background: rgba(255, 255, 255, 0.5);
+    border: 1px solid var(--border);
+    padding: 0.75rem 1rem;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.rsvp-input:focus {
+    border-color: var(--gold);
+}
+
+.rsvp-input::placeholder {
+    color: var(--text-light);
+    opacity: 0.7;
+}
+
+/* ---------- Buttons ---------- */
+.rsvp-submit-btn {
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--bg);
+    background: var(--text-dark);
+    border: 1px solid var(--text-dark);
+    padding: 0.75rem 1.5rem;
+    cursor: pointer;
+    transition: background 0.3s ease, opacity 0.3s ease;
+    white-space: nowrap;
+}
+
+.rsvp-submit-btn:hover {
+    background: var(--text);
+    border-color: var(--text);
+}
+
+.rsvp-submit-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.rsvp-back-btn {
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: var(--text-light);
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-top: 1.5rem;
+    padding: 0.5rem;
+    letter-spacing: 0.05em;
+    transition: color 0.3s ease;
+}
+
+.rsvp-back-btn:hover {
+    color: var(--text-dark);
+}
+
+/* ---------- Error ---------- */
+.rsvp-error {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    color: #a05050;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+/* ---------- Candidates ---------- */
+.rsvp-candidates {
+    width: 100%;
+}
+
+.rsvp-candidate-list {
+    list-style: none;
+    width: 100%;
+}
+
+.rsvp-candidate-list li {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-weight: 400;
+    color: var(--text-dark);
+    padding: 0.8rem 1rem;
+    border: 1px solid var(--border);
+    margin-bottom: 0.4rem;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease;
+    text-align: left;
+}
+
+.rsvp-candidate-list li:hover {
+    background: rgba(255, 255, 255, 0.5);
+    border-color: var(--gold);
+}
+
+.rsvp-candidate-list li.submitted {
+    color: var(--text-light);
+    cursor: default;
+    font-style: italic;
+}
+
+/* ---------- Guest Card ---------- */
+.rsvp-guest-card {
+    background: rgba(255, 255, 255, 0.4);
+    border: 1px solid var(--border);
+    padding: 1rem 1.5rem;
+    margin-bottom: 1.5rem;
+    width: 100%;
+}
+
+.rsvp-guest-name {
+    font-family: var(--font-script);
+    font-size: 1.6rem;
+    color: var(--text-dark);
+}
+
+/* ---------- Form Fields ---------- */
+.rsvp-field {
+    width: 100%;
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+.rsvp-field-label {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text);
+    margin-bottom: 0.6rem;
+}
+
+.rsvp-radio-group {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.rsvp-radio {
+    flex: 1;
+    cursor: pointer;
+}
+
+.rsvp-radio input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.rsvp-radio-box {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    color: var(--text);
+    text-align: center;
+    padding: 0.65rem 0.5rem;
+    border: 1px solid var(--border);
+    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.rsvp-radio input:checked + .rsvp-radio-box {
+    background: var(--text-dark);
+    border-color: var(--text-dark);
+    color: var(--bg);
+}
+
+/* Plus-one name */
+.rsvp-plus-one-name-wrap {
+    margin-top: 0.6rem;
+}
+
+.rsvp-plus-one-name-wrap .rsvp-input {
+    width: 100%;
+}
+
+/* ---------- Submit button full width in form ---------- */
+#rsvp-form-el .rsvp-submit-btn {
+    width: 100%;
+    margin-top: 0.5rem;
+}
+
+/* ---------- Success ---------- */
+.rsvp-success-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 2px solid var(--accent);
+    color: var(--accent);
+    font-size: 1.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+}
+
+/* ============================================
+   ANIMATIONS — ENTRANCE
+   ============================================ */
+
+/* Initially hidden */
+.anim-fade {
+    opacity: 0;
+    will-change: opacity, transform;
+}
+
+/* Fade elements — slide down from above */
+.anim-fade {
+    transform: translateY(-25px);
+    transition: opacity 0.9s ease, transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.anim-fade.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* ============================================
+   DATE BLOCK — DIVIDER LINES
+   ============================================ */
+.date-row {
+    position: relative;
+}
+
+.date-block::before,
+.date-block::after {
+    content: "";
+    display: block;
+    width: 220px;
+    max-width: 60vw;
+    height: 1px;
+    background: var(--border);
+    margin: 0 auto;
+}
+
+.date-block::before {
+    margin-bottom: 0.4rem;
+}
+
+.date-block::after {
+    margin-top: 0.4rem;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 480px) {
+    .bismillah {
+        font-size: 1.6rem;
+    }
+
+    .together {
+        font-size: 1.1rem;
+    }
+
+    .request {
+        font-size: 1rem;
+    }
+
+    .date-label {
+        font-size: 0.8rem;
+        padding: 0 0.6rem;
+    }
+
+    .date-number {
+        font-size: 2.6rem;
+    }
+
+    .date-center .month {
+        font-size: 0.75rem;
+    }
+
+    .date-divider-v {
+        height: 40px;
+    }
+
+    .venue {
+        font-size: 1.15rem;
+    }
+
+    .invitation-content {
+        padding: 4vh 1rem 1.5rem;
+    }
+
+    .rsvp-input-group {
+        flex-direction: column;
+    }
+
+    .rsvp-radio-group {
+        flex-direction: column;
+    }
+
+    #rsvp-section {
+        padding: 2rem 1rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .name {
+        font-size: 1.6rem;
+    }
+
+    .date-label {
+        font-size: 0.7rem;
+        padding: 0 0.4rem;
+    }
+
+    .date-number {
+        font-size: 2.2rem;
+    }
+}
+
+/* Landscape phones */
+@media (max-height: 600px) and (orientation: landscape) {
+    .bismillah {
+        font-size: 1.2rem;
+        margin-bottom: 0.3rem;
+    }
+
+    .together {
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .request {
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .date-number {
+        font-size: 2rem;
+    }
+
+    .date-divider-v {
+        height: 30px;
+    }
+}
+
+/* Tablets and larger */
+@media (min-width: 768px) {
+    .bismillah {
+        font-size: 2rem;
+    }
+
+    .together {
+        font-size: 1.3rem;
+    }
+
+    .request {
+        font-size: 1.15rem;
+    }
+
+    .date-number {
+        font-size: 3.2rem;
+    }
+
+    .venue {
+        font-size: 1.35rem;
+    }
+}
