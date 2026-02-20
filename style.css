@@ -134,28 +134,68 @@ body::before {
     background: #fff;
 }
 
-/* Fountain background — reveals with animation after video */
-#invitation::after {
-    content: "";
+/* Background GIF — positioned behind content, swapped by JS */
+.bg-gif {
     position: absolute;
     inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
     z-index: 0;
-    background:
-        radial-gradient(ellipse at center, rgba(245, 237, 228, 0.55) 20%, rgba(239, 229, 216, 0.6) 100%),
-        url('assets/0220.gif') center top / cover no-repeat;
-    background-color: var(--bg);
     opacity: 0;
     transform: translateY(50px);
     transition: opacity 1.5s ease, transform 1.5s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-#invitation.reveal-bg::after {
+.bg-gif.revealed {
     opacity: 1;
     transform: translateY(0);
 }
 
+/* Semi-transparent overlay on top of GIF for text readability */
+#invitation::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: radial-gradient(ellipse at center, rgba(245, 237, 228, 0.55) 20%, rgba(239, 229, 216, 0.6) 100%);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 2.5s ease;
+}
 
+#invitation.reveal-bg::after {
+    opacity: 1;
+}
 
+/* ---------- Floral Frame ---------- */
+.floral-frame {
+    position: absolute;
+    top: 5px;
+    bottom: -5px;
+    left: 8px;
+    right: 8px;
+    width: calc(100% - 16px);
+    height: calc(100% + 0px);
+    object-fit: fill;
+    pointer-events: none;
+    z-index: 2;
+    opacity: 0;
+    transition: opacity 1.2s ease 0.3s;
+    -webkit-mask-image:
+        linear-gradient(135deg, transparent 0%, black 12%),
+        linear-gradient(-45deg, transparent 0%, black 12%);
+    -webkit-mask-composite: destination-in;
+    mask-image:
+        linear-gradient(135deg, transparent 0%, black 12%),
+        linear-gradient(-45deg, transparent 0%, black 12%);
+    mask-composite: intersect;
+}
+
+.invitation-content.text-revealed .floral-frame {
+    opacity: 1;
+}
 
 /* ---------- Invitation Content ---------- */
 .invitation-content {
@@ -169,6 +209,13 @@ body::before {
     max-width: 600px;
     width: 100%;
     gap: 0;
+}
+
+
+/* ---------- Text above frame ---------- */
+.bismillah, .together, .names-block, .request, .date-block, .venue {
+    position: relative;
+    z-index: 3;
 }
 
 /* ---------- Bismillah ---------- */
@@ -311,278 +358,6 @@ body::before {
 }
 
 
-/* ============================================
-   BODY SCROLL UNLOCK
-   ============================================ */
-body.body-scrollable {
-    overflow-y: auto;
-    height: auto;
-}
-
-/* ============================================
-   RSVP SECTION
-   ============================================ */
-#rsvp-section {
-    position: relative;
-    z-index: 1;
-    min-height: 100vh;
-    min-height: 100dvh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 3rem 1.5rem;
-    background: var(--bg);
-}
-
-.rsvp-container {
-    width: 100%;
-    max-width: 480px;
-    position: relative;
-}
-
-/* ---------- RSVP Views ---------- */
-.rsvp-view {
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-}
-
-.rsvp-view.active {
-    display: flex;
-}
-
-.rsvp-title {
-    font-family: var(--font-display);
-    font-size: 1.8rem;
-    font-weight: 300;
-    color: var(--text-dark);
-    letter-spacing: 0.08em;
-    margin-bottom: 0.5rem;
-}
-
-.rsvp-subtitle {
-    font-family: var(--font-display);
-    font-size: 1rem;
-    font-weight: 300;
-    color: var(--text-light);
-    letter-spacing: 0.03em;
-    line-height: 1.6;
-    margin-bottom: 1.5rem;
-}
-
-/* ---------- Search Input ---------- */
-.rsvp-input-group {
-    display: flex;
-    gap: 0.5rem;
-    width: 100%;
-    margin-bottom: 1rem;
-}
-
-.rsvp-input {
-    flex: 1;
-    font-family: var(--font-body);
-    font-size: 0.95rem;
-    color: var(--text-dark);
-    background: rgba(255, 255, 255, 0.5);
-    border: 1px solid var(--border);
-    padding: 0.75rem 1rem;
-    outline: none;
-    transition: border-color 0.3s ease;
-}
-
-.rsvp-input:focus {
-    border-color: var(--gold);
-}
-
-.rsvp-input::placeholder {
-    color: var(--text-light);
-    opacity: 0.7;
-}
-
-/* ---------- Buttons ---------- */
-.rsvp-submit-btn {
-    font-family: var(--font-display);
-    font-size: 0.85rem;
-    font-weight: 500;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--bg);
-    background: var(--text-dark);
-    border: 1px solid var(--text-dark);
-    padding: 0.75rem 1.5rem;
-    cursor: pointer;
-    transition: background 0.3s ease, opacity 0.3s ease;
-    white-space: nowrap;
-}
-
-.rsvp-submit-btn:hover {
-    background: var(--text);
-    border-color: var(--text);
-}
-
-.rsvp-submit-btn:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-}
-
-.rsvp-back-btn {
-    font-family: var(--font-display);
-    font-size: 0.85rem;
-    font-weight: 400;
-    color: var(--text-light);
-    background: none;
-    border: none;
-    cursor: pointer;
-    margin-top: 1.5rem;
-    padding: 0.5rem;
-    letter-spacing: 0.05em;
-    transition: color 0.3s ease;
-}
-
-.rsvp-back-btn:hover {
-    color: var(--text-dark);
-}
-
-/* ---------- Error ---------- */
-.rsvp-error {
-    font-family: var(--font-body);
-    font-size: 0.85rem;
-    color: #a05050;
-    margin-bottom: 1rem;
-    text-align: center;
-}
-
-/* ---------- Candidates ---------- */
-.rsvp-candidates {
-    width: 100%;
-}
-
-.rsvp-candidate-list {
-    list-style: none;
-    width: 100%;
-}
-
-.rsvp-candidate-list li {
-    font-family: var(--font-display);
-    font-size: 1.05rem;
-    font-weight: 400;
-    color: var(--text-dark);
-    padding: 0.8rem 1rem;
-    border: 1px solid var(--border);
-    margin-bottom: 0.4rem;
-    cursor: pointer;
-    transition: background 0.2s ease, border-color 0.2s ease;
-    text-align: left;
-}
-
-.rsvp-candidate-list li:hover {
-    background: rgba(255, 255, 255, 0.5);
-    border-color: var(--gold);
-}
-
-.rsvp-candidate-list li.submitted {
-    color: var(--text-light);
-    cursor: default;
-    font-style: italic;
-}
-
-/* ---------- Guest Card ---------- */
-.rsvp-guest-card {
-    background: rgba(255, 255, 255, 0.4);
-    border: 1px solid var(--border);
-    padding: 1rem 1.5rem;
-    margin-bottom: 1.5rem;
-    width: 100%;
-}
-
-.rsvp-guest-name {
-    font-family: var(--font-script);
-    font-size: 1.6rem;
-    color: var(--text-dark);
-}
-
-/* ---------- Form Fields ---------- */
-.rsvp-field {
-    width: 100%;
-    margin-bottom: 1.5rem;
-    text-align: left;
-}
-
-.rsvp-field-label {
-    display: block;
-    font-family: var(--font-display);
-    font-size: 0.9rem;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--text);
-    margin-bottom: 0.6rem;
-}
-
-.rsvp-radio-group {
-    display: flex;
-    gap: 0.5rem;
-}
-
-.rsvp-radio {
-    flex: 1;
-    cursor: pointer;
-}
-
-.rsvp-radio input {
-    position: absolute;
-    opacity: 0;
-    pointer-events: none;
-}
-
-.rsvp-radio-box {
-    display: block;
-    font-family: var(--font-display);
-    font-size: 0.85rem;
-    font-weight: 400;
-    letter-spacing: 0.05em;
-    color: var(--text);
-    text-align: center;
-    padding: 0.65rem 0.5rem;
-    border: 1px solid var(--border);
-    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
-}
-
-.rsvp-radio input:checked + .rsvp-radio-box {
-    background: var(--text-dark);
-    border-color: var(--text-dark);
-    color: var(--bg);
-}
-
-/* Plus-one name */
-.rsvp-plus-one-name-wrap {
-    margin-top: 0.6rem;
-}
-
-.rsvp-plus-one-name-wrap .rsvp-input {
-    width: 100%;
-}
-
-/* ---------- Submit button full width in form ---------- */
-#rsvp-form-el .rsvp-submit-btn {
-    width: 100%;
-    margin-top: 0.5rem;
-}
-
-/* ---------- Success ---------- */
-.rsvp-success-icon {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    border: 2px solid var(--accent);
-    color: var(--accent);
-    font-size: 1.8rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 1rem;
-}
 
 /* ============================================
    ANIMATIONS — ENTRANCE
@@ -671,18 +446,6 @@ body.body-scrollable {
 
     .invitation-content {
         padding: 4vh 1rem 1.5rem;
-    }
-
-    .rsvp-input-group {
-        flex-direction: column;
-    }
-
-    .rsvp-radio-group {
-        flex-direction: column;
-    }
-
-    #rsvp-section {
-        padding: 2rem 1rem;
     }
 }
 
