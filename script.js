@@ -46,6 +46,10 @@ document.addEventListener("DOMContentLoaded", () => {
         startGifSequence();
     }
 
+    // Preload looping GIF so swap is instant
+    const loopGif = new Image();
+    loopGif.src = "assets/looping%20vid.gif";
+
     // ---- GIF Sequence: vid.gif (once) → looping vid.gif + text ----
     function startGifSequence() {
         // Step 1: Load vid.gif and show it clearly (no overlay)
@@ -55,11 +59,12 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         // Step 2: After vid.gif finishes (~4.8s), swap to looping vid, fade in overlay, show text
+        // Swap slightly before the loop restarts to avoid the twitch
         setTimeout(() => {
-            bgGif.src = "assets/looping%20vid.gif";
+            bgGif.src = loopGif.src;
             invitation.classList.add("reveal-bg");
             startTextReveal();
-        }, VID_GIF_DURATION);
+        }, VID_GIF_DURATION - 200);
     }
 
     // ---- Text Reveal: slow staggered fade-in from top ----

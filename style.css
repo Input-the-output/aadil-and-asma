@@ -137,7 +137,10 @@ body::before {
 /* Background GIF — positioned behind content, swapped by JS */
 .bg-gif {
     position: absolute;
-    inset: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -157,7 +160,10 @@ body::before {
 #invitation::after {
     content: "";
     position: absolute;
-    inset: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     z-index: 1;
     background: radial-gradient(ellipse at center, rgba(245, 237, 228, 0.55) 20%, rgba(239, 229, 216, 0.6) 100%);
     pointer-events: none;
@@ -183,14 +189,6 @@ body::before {
     z-index: 2;
     opacity: 0;
     transition: opacity 1.2s ease 0.3s;
-    -webkit-mask-image:
-        linear-gradient(135deg, transparent 0%, black 12%),
-        linear-gradient(-45deg, transparent 0%, black 12%);
-    -webkit-mask-composite: destination-in;
-    mask-image:
-        linear-gradient(135deg, transparent 0%, black 12%),
-        linear-gradient(-45deg, transparent 0%, black 12%);
-    mask-composite: intersect;
 }
 
 .invitation-content.text-revealed .floral-frame {
