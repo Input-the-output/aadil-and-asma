@@ -172,12 +172,12 @@ body::before {
 /* ---------- Floral Frame ---------- */
 .floral-frame {
     position: absolute;
-    top: 5px;
-    bottom: -5px;
+    top: -15px;
+    bottom: -15px;
     left: 8px;
     right: 8px;
     width: calc(100% - 16px);
-    height: calc(100% + 0px);
+    height: calc(100% + 30px);
     object-fit: fill;
     pointer-events: none;
     z-index: 2;
@@ -205,7 +205,7 @@ body::before {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    padding: 6vh 1.5rem 2rem;
+    padding: 8vh 2rem 4rem;
     max-width: 600px;
     width: 100%;
     gap: 0;
