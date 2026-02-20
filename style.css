@@ -208,7 +208,7 @@ body::before {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    padding: 12vh 2rem 10vh;
+    padding: 16vh 2rem 14vh;
     max-width: 600px;
     width: 100%;
     gap: 0;
