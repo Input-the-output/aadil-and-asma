@@ -71,8 +71,8 @@ document.addEventListener("DOMContentLoaded", () => {
     function startTextReveal() {
         const content = document.querySelector(".invitation-content");
 
-        // Show floral border frame with the text
-        content.classList.add("text-revealed");
+        // Show floral border frames
+        invitation.classList.add("show-frames");
 
         fadeElements.forEach((el) => {
             const delayIndex = parseInt(el.dataset.delay, 10) || 1;
