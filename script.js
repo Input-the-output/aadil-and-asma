@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
         startCascadeReveal();
     }
 
-    // ---- Cascade Reveal: fountain → content ----
+    // ---- Cascade Reveal: fountain → content → cadres ----
     function startCascadeReveal() {
         // Step 1: Fountain background fades in from bottom
         requestAnimationFrame(() => {
@@ -58,6 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 }, delayIndex * 350);
             });
         }, 700);
+
     }
 
     /* ============================================
