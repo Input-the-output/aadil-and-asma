@@ -175,20 +175,25 @@ body::before {
     opacity: 1;
 }
 
-/* ---------- Floral Frame ---------- */
+/* ---------- Floral Frame (top & bottom pieces) ---------- */
 .floral-frame {
     position: absolute;
-    top: -15px;
-    bottom: -15px;
-    left: 8px;
-    right: 8px;
-    width: calc(100% - 16px);
-    height: calc(100% + 30px);
-    object-fit: fill;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: auto;
     pointer-events: none;
     z-index: 2;
     opacity: 0;
     transition: opacity 1.2s ease 0.3s;
+}
+
+.floral-frame-top {
+    top: -10px;
+}
+
+.floral-frame-bottom {
+    bottom: -10px;
 }
 
 .invitation-content.text-revealed .floral-frame {
@@ -203,7 +208,7 @@ body::before {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    padding: 8vh 2rem 4rem;
+    padding: 12vh 2rem 10vh;
     max-width: 600px;
     width: 100%;
     gap: 0;
