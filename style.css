@@ -147,13 +147,13 @@ body::before {
     object-position: center top;
     z-index: 0;
     opacity: 0;
-    transform: translateY(50px);
+    transform: scale(0.9);
     transition: opacity 1.5s ease, transform 1.5s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .bg-gif.revealed {
     opacity: 1;
-    transform: translateY(0);
+    transform: scale(1);
 }
 
 /* Semi-transparent overlay on top of GIF for text readability */
